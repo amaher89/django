@@ -1,0 +1,26 @@
+{% extends "base_generic.html" %}
+
+{% block content %}
+<div style="background-color: #FE9; padding: 4px 4px 4px 4px" {% if request.session['error_msg'] == '' %}hidden{% endif %} >
+{{ request.session.error_msg }}
+</div>
+{% if messages %}
+<ul>
+   {% for message in messages %}
+	   <li>{{ message }}</li>
+   {% endfor %}
+</ul>
+{% endif %}
+	<form action="add_person_commit.html" method="POST">
+{% csrf_token %}
+		<table>
+			<tr><td>Name</td><td><input type='text' name="name" /></td></tr>
+			<tr><td>Mail</td><td><input type='text' name="mail" /></td></tr>
+			<tr><td colspan=2><input type="submit" /></td></tr>
+			
+		</table>
+	</form>
+	{% for name in object_list %}
+		name:{{name.name}},E-mail:{{name.mail}}
+	{% endfor %}
+{% endblock %}

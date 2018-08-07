@@ -1,0 +1,9 @@
+{% extends "base_generic.html" %}
+{% block content %}
+	<table border=1>
+		<tr><th>Name</th><th>Email</th></tr>
+	{% for name in object_list %}
+		<tr><td>{{name.name}}</td><td>{{name.mail}}</td></tr>
+	{% endfor %}
+	</table>
+{% endblock %}
